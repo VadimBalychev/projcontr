@@ -14,22 +14,23 @@ public class ProjectMapperImpl implements ProjectMapper {
     @Override
     public Project toProject(ProjectEntity entity) {
         Project project = new Project();
-        List<Task> taskList = entity.getTasks().stream().map(x -> {
-            Task task = new Task();
-            task.setName(x.getName());
-            task.setPhase(x.getPhase());
-            task.setPriority(x.getPriority());
-            task.setCreateTime(x.getCreateTime());
-            task.setFinishTime(x.getFinishTime());
-            task.setProjectName(x.getProject().getName());
-            task.setId(x.getId());
-            task.setDescription(x.getDescription());
-            return task;
-        }).toList();
-
+        if (entity.getTasks() != null) {
+            List<Task> taskList = entity.getTasks().stream().map(x -> {
+                Task task = new Task();
+                task.setName(x.getName());
+                task.setPhase(x.getPhase());
+                task.setPriority(x.getPriority());
+                task.setCreateTime(x.getCreateTime());
+                task.setFinishTime(x.getFinishTime());
+                task.setProjectName(x.getProject().getName());
+                task.setId(x.getId());
+                task.setDescription(x.getDescription());
+                return task;
+            }).toList();
+            project.setTasks(taskList);
+        }
         project.setId(entity.getId());
         project.setName(entity.getName());
-        project.setTasks(taskList);
 
         return project;
     }
@@ -37,23 +38,23 @@ public class ProjectMapperImpl implements ProjectMapper {
     @Override
     public ProjectEntity toProjectEntity(Project project) {
         ProjectEntity projectEntity = new ProjectEntity();
-
-        List<TaskEntity> taskEntityList = project.getTasks().stream().map(x -> {
-            TaskEntity task = new TaskEntity();
-            task.setName(x.getName());
-            task.setPhase(x.getPhase());
-            task.setPriority(x.getPriority());
-            task.setCreateTime(x.getCreateTime());
-            task.setFinishTime(x.getFinishTime());
-            task.setProject(projectEntity);
-            task.setId(x.getId());
-            task.setDescription(x.getDescription());
-            return task;
-        }).toList();
-
+        if (project.getTasks() != null) {
+            List<TaskEntity> taskEntityList = project.getTasks().stream().map(x -> {
+                TaskEntity task = new TaskEntity();
+                task.setName(x.getName());
+                task.setPhase(x.getPhase());
+                task.setPriority(x.getPriority());
+                task.setCreateTime(x.getCreateTime());
+                task.setFinishTime(x.getFinishTime());
+                task.setProject(projectEntity);
+                task.setId(x.getId());
+                task.setDescription(x.getDescription());
+                return task;
+            }).toList();
+            projectEntity.setTasks(taskEntityList);
+        }
         projectEntity.setId(project.getId());
         projectEntity.setName(project.getName());
-        projectEntity.setTasks(taskEntityList);
 
         return projectEntity;
     }
