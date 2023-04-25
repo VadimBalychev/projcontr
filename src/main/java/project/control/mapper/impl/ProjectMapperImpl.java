@@ -22,7 +22,7 @@ public class ProjectMapperImpl implements ProjectMapper {
                 task.setPriority(x.getPriority());
                 task.setCreateTime(x.getCreateTime());
                 task.setFinishTime(x.getFinishTime());
-                task.setProjectName(x.getProject().getName());
+                task.setProjectId(x.getProject().getId());
                 task.setId(x.getId());
                 task.setDescription(x.getDescription());
                 return task;

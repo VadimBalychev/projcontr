@@ -14,6 +14,6 @@ public class Task {
     private String description;
     private Phase phase;
     private String name;
-    private String projectName;
+    private Long projectId;
     private Priority priority;
 }

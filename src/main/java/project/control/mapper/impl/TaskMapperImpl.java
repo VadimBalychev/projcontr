@@ -1,5 +1,6 @@
 package project.control.mapper.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import project.control.entity.TaskEntity;
 import project.control.mapper.TaskMapper;
@@ -8,6 +9,7 @@ import project.control.repository.ProjectRepository;
 
 @Component
 public class TaskMapperImpl implements TaskMapper {
+    @Autowired
     ProjectRepository repository;
     @Override
     public Task toTask(TaskEntity entity) {
@@ -17,7 +19,7 @@ public class TaskMapperImpl implements TaskMapper {
         task.setPriority(entity.getPriority());
         task.setCreateTime(entity.getCreateTime());
         task.setFinishTime(entity.getFinishTime());
-        task.setProjectName(entity.getProject().getName());
+        task.setProjectId(entity.getProject().getId());
         task.setId(entity.getId());
         task.setDescription(entity.getDescription());
         return task;
@@ -31,7 +33,7 @@ public class TaskMapperImpl implements TaskMapper {
         taskEntity.setPriority(task.getPriority());
         taskEntity.setCreateTime(task.getCreateTime());
         taskEntity.setFinishTime(task.getFinishTime());
-        taskEntity.setProject(repository.findByName(task.getName()));
+        taskEntity.setProject(repository.findById(task.getProjectId()).get());
         taskEntity.setId(task.getId());
         taskEntity.setDescription(task.getDescription());
         return taskEntity;

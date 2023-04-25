@@ -3,6 +3,7 @@ package project.control.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 
@@ -21,5 +22,6 @@ public class ProjectEntity {
     private String description;
 
     @OneToMany(mappedBy = "project")
+    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE)
     private List<TaskEntity> tasks;
 }
