@@ -1,6 +1,7 @@
 Projects:
     GET /api/projects:
-        Получение всех проектов из БД.
+        Получение всех проектов из БД в формате json.
+        Пример json можно увидеть в project.json
 
     POST /api/projects:
         Добавление проекта в БД
@@ -22,7 +23,8 @@ Projects:
 
 Task:
     GET /api/tasks:
-        Получение всех задач из БД.
+        Получение всех задач из БД в формате json.
+        Пример json можно увидеть в task.json
 
     POST /api/tasks:
         Добавление задачи в БД
