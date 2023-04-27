@@ -32,7 +32,7 @@ public class ProjectService {
             return mapper.toProject(repository.save(mapper.toProjectEntity(project)));
         }
         else {
-            log.error("При попытке обновления проекта, проект с id = " + projectId + " не обнаружен");
+            log.info("\n\nПри попытке обновления проекта, проект с id = " + projectId + " не обнаружен\n\n");
             throw new ResponseStatusException(HttpStatusCode.valueOf(404));
         }
     }
@@ -42,7 +42,7 @@ public class ProjectService {
             repository.deleteById(projectId);
         }
         else {
-            log.error("При попытке удаления проекта, проект с id = " + projectId + " не обнаружен");
+            log.info("\n\nПри попытке удаления проекта, проект с id = " + projectId + " не обнаружен\n\n");
             throw new ResponseStatusException(HttpStatusCode.valueOf(404));
         }
     }

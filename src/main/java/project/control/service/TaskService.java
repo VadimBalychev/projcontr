@@ -33,7 +33,7 @@ public class TaskService {
             return mapper.toTask(repository.save(mapper.toTaskEntity(task)));
         }
         else {
-            log.error("При попытке обновления задачи, задачи с id = " + taskId + " не обнаружено");
+            log.info("\n\nПри попытке обновления задачи, задачи с id = " + taskId + " не обнаружено\n\n");
             throw new ResponseStatusException(HttpStatusCode.valueOf(404));
         }
     }
@@ -43,7 +43,7 @@ public class TaskService {
             repository.deleteById(taskId);
         }
         else {
-            log.error("При попытке удаления задачи, задачи с id = " + taskId + " не обнаружено");
+            log.info("\n\nПри попытке удаления задачи, задачи с id = " + taskId + " не обнаружено\n\n");
             throw new ResponseStatusException(HttpStatusCode.valueOf(404));
         }
     }
