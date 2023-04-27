@@ -33,7 +33,7 @@ public class TaskService {
             return mapper.toTask(repository.save(mapper.toTaskEntity(task)));
         }
         else {
-            log.error("При попытке обновления задачи, проект с id = " + taskId + " не обнаружен");
+            log.error("При попытке обновления задачи, задачи с id = " + taskId + " не обнаружено");
             throw new ResponseStatusException(HttpStatusCode.valueOf(404));
         }
     }
@@ -43,19 +43,19 @@ public class TaskService {
             repository.deleteById(taskId);
         }
         else {
-            log.error("При попытке удаления проекта, проект с id = " + taskId + " не обнаружен");
+            log.error("При попытке удаления задачи, задачи с id = " + taskId + " не обнаружено");
             throw new ResponseStatusException(HttpStatusCode.valueOf(404));
         }
     }
 
     public static void createLog(Task task) {
-        log.info('\n' + "Попытка добавить проект с параметрами: " + '\n' +
+        log.info("\n\nПопытка добавить задачу с параметрами: " + '\n' +
         "id: " + task.getId() + '\n' +
         "name: " + task.getName() + '\n' +
         "description: " + task.getDescription() + '\n' +
         "phase: " + task.getPhase() + '\n' +
         "priority: " + task.getPriority() + '\n' +
         "createTime: " + task.getCreateTime() + '\n' +
-        "finishTime: " + task.getFinishTime());
+        "finishTime: " + task.getFinishTime() + '\n' + '\n');
     }
 }

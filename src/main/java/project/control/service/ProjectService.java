@@ -48,9 +48,9 @@ public class ProjectService {
     }
 
     public static void createLog(Project project) {
-        log.info('\n' + "Попытка добавить проект с параметрами: " + '\n' +
+        log.info("\n\nПопытка добавить проект с параметрами: " + '\n' +
         "id: " + project.getId() + '\n' +
         "name: " + project.getName() + '\n' +
-        "description: " + project.getDescription());
+        "description: " + project.getDescription() + '\n' + '\n');
     }
 }
