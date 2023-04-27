@@ -1,10 +1,12 @@
 package project.control.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import project.control.mapper.TaskMapper;
+import project.control.model.Project;
 import project.control.model.Task;
 import project.control.repository.TaskRepository;
 
@@ -12,6 +14,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class TaskService {
     private final TaskRepository repository;
     private final TaskMapper mapper;
@@ -20,6 +23,7 @@ public class TaskService {
     }
 
     public Task createTask(Task task) {
+        createLog(task);
         return mapper.toTask(repository.save(mapper.toTaskEntity(task)));
     }
 
@@ -29,6 +33,7 @@ public class TaskService {
             return mapper.toTask(repository.save(mapper.toTaskEntity(task)));
         }
         else {
+            log.error("При попытке обновления задачи, проект с id = " + taskId + " не обнаружен");
             throw new ResponseStatusException(HttpStatusCode.valueOf(404));
         }
     }
@@ -38,7 +43,19 @@ public class TaskService {
             repository.deleteById(taskId);
         }
         else {
+            log.error("При попытке удаления проекта, проект с id = " + taskId + " не обнаружен");
             throw new ResponseStatusException(HttpStatusCode.valueOf(404));
         }
+    }
+
+    public static void createLog(Task task) {
+        log.info('\n' + "Попытка добавить проект с параметрами: " + '\n' +
+        "id: " + task.getId() + '\n' +
+        "name: " + task.getName() + '\n' +
+        "description: " + task.getDescription() + '\n' +
+        "phase: " + task.getPhase() + '\n' +
+        "priority: " + task.getPriority() + '\n' +
+        "createTime: " + task.getCreateTime() + '\n' +
+        "finishTime: " + task.getFinishTime());
     }
 }

@@ -1,6 +1,7 @@
 package project.control.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ProjectService {
     private final ProjectRepository repository;
     private final ProjectMapper mapper;
@@ -20,6 +22,7 @@ public class ProjectService {
     }
 
     public Project createProject(Project project) {
+        createLog(project);
         return mapper.toProject(repository.save(mapper.toProjectEntity(project)));
     }
 
@@ -29,6 +32,7 @@ public class ProjectService {
             return mapper.toProject(repository.save(mapper.toProjectEntity(project)));
         }
         else {
+            log.error("При попытке обновления проекта, проект с id = " + projectId + " не обнаружен");
             throw new ResponseStatusException(HttpStatusCode.valueOf(404));
         }
     }
@@ -38,7 +42,15 @@ public class ProjectService {
             repository.deleteById(projectId);
         }
         else {
+            log.error("При попытке удаления проекта, проект с id = " + projectId + " не обнаружен");
             throw new ResponseStatusException(HttpStatusCode.valueOf(404));
         }
+    }
+
+    public static void createLog(Project project) {
+        log.info('\n' + "Попытка добавить проект с параметрами: " + '\n' +
+        "id: " + project.getId() + '\n' +
+        "name: " + project.getName() + '\n' +
+        "description: " + project.getDescription());
     }
 }
