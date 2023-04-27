@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import project.control.mapper.TaskMapper;
-import project.control.model.Project;
 import project.control.model.Task;
 import project.control.repository.TaskRepository;
 
@@ -48,7 +47,7 @@ public class TaskService {
         }
     }
 
-    public static void createLog(Task task) {
+    public void createLog(Task task) {
         log.info("\n\nПопытка добавить задачу с параметрами: " + '\n' +
         "id: " + task.getId() + '\n' +
         "name: " + task.getName() + '\n' +
