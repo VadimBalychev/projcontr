@@ -20,8 +20,8 @@ public class ProjectMapperImpl implements ProjectMapper {
                 task.setName(x.getName());
                 task.setPhase(x.getPhase());
                 task.setPriority(x.getPriority());
-                task.setCreateTime(x.getCreateTime());
-                task.setFinishTime(x.getFinishTime());
+                task.setCreateDate(x.getCreateDate());
+                task.setFinishDate(x.getFinishDate());
                 task.setProjectId(x.getProject().getId());
                 task.setId(x.getId());
                 task.setDescription(x.getDescription());
@@ -47,8 +47,8 @@ public class ProjectMapperImpl implements ProjectMapper {
                 task.setName(x.getName());
                 task.setPhase(x.getPhase());
                 task.setPriority(x.getPriority());
-                task.setCreateTime(x.getCreateTime());
-                task.setFinishTime(x.getFinishTime());
+                task.setCreateDate(x.getCreateDate());
+                task.setFinishDate(x.getFinishDate());
                 task.setProject(projectEntity);
                 task.setId(x.getId());
                 task.setDescription(x.getDescription());

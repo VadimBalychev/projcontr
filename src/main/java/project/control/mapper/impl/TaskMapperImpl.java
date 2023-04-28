@@ -17,8 +17,8 @@ public class TaskMapperImpl implements TaskMapper {
         task.setName(entity.getName());
         task.setPhase(entity.getPhase());
         task.setPriority(entity.getPriority());
-        task.setCreateTime(entity.getCreateTime());
-        task.setFinishTime(entity.getFinishTime());
+        task.setCreateDate(entity.getCreateDate());
+        task.setFinishDate(entity.getFinishDate());
         task.setProjectId(entity.getProject().getId());
         task.setId(entity.getId());
         task.setDescription(entity.getDescription());
@@ -31,8 +31,8 @@ public class TaskMapperImpl implements TaskMapper {
         taskEntity.setName(task.getName());
         taskEntity.setPhase(task.getPhase());
         taskEntity.setPriority(task.getPriority());
-        taskEntity.setCreateTime(task.getCreateTime());
-        taskEntity.setFinishTime(task.getFinishTime());
+        taskEntity.setCreateDate(task.getCreateDate());
+        taskEntity.setFinishDate(task.getFinishDate());
         taskEntity.setProject(repository.findById(task.getProjectId()).get());
         taskEntity.setId(task.getId());
         taskEntity.setDescription(task.getDescription());
