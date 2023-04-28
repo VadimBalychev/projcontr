@@ -61,7 +61,7 @@ public class TaskService {
         "description: " + task.getDescription() + '\n' +
         "phase: " + task.getPhase() + '\n' +
         "priority: " + task.getPriority() + '\n' +
-        "createTime: " + task.getCreateTime() + '\n' +
-        "finishTime: " + task.getFinishTime() + '\n' + '\n');
+        "createTime: " + task.getCreateDate() + '\n' +
+        "finishTime: " + task.getFinishDate() + '\n' + '\n');
     }
 }
