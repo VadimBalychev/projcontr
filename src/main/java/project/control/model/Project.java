@@ -11,6 +11,6 @@ public class Project {
     private String name;
     private String description;
     private Date createTime;
-    private boolean isFinished;
+    private Boolean isFinished;
     private List<Task> tasks;
 }

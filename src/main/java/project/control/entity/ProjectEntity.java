@@ -24,7 +24,7 @@ public class ProjectEntity {
     @Column(name = "create_time")
     private Date createTime;
     @Column(name = "is_finished")
-    private boolean isFinished;
+    private Boolean isFinished;
 
     @OneToMany(mappedBy = "project")
     @Cascade(value = org.hibernate.annotations.CascadeType.DELETE)
