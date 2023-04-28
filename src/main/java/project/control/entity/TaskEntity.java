@@ -14,7 +14,7 @@ import java.util.Date;
 @Setter
 public class TaskEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "create_date")
     private Date createDate;
