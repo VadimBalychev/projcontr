@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cascade;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,10 @@ public class ProjectEntity {
     private String name;
     @Column(name = "description")
     private String description;
+    @Column(name = "create_time")
+    private Date createTime;
+    @Column(name = "is_finished")
+    private boolean isFinished;
 
     @OneToMany(mappedBy = "project")
     @Cascade(value = org.hibernate.annotations.CascadeType.DELETE)
