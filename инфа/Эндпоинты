@@ -3,6 +3,10 @@ Projects:
         Получение всех проектов из БД в формате json.
         Пример json можно увидеть в project.json
 
+    GET /api/projects/[id]:
+        Получение проекта по id из БД в формате json.
+        Пример json можно увидеть в project.json
+
     POST /api/projects:
         Добавление проекта в БД
         Необходимо передавать в теле запроса json
@@ -24,6 +28,10 @@ Projects:
 Task:
     GET /api/tasks:
         Получение всех задач из БД в формате json.
+        Пример json можно увидеть в task.json
+
+    GET /api/tasks/[id]:
+        Получение задачи по id из БД в формате json.
         Пример json можно увидеть в task.json
 
     POST /api/tasks:
