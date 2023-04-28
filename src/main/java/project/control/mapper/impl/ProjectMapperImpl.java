@@ -32,7 +32,7 @@ public class ProjectMapperImpl implements ProjectMapper {
         project.setId(entity.getId());
         project.setName(entity.getName());
         project.setDescription(entity.getDescription());
-        project.setFinished(entity.isFinished());
+        project.setIsFinished(entity.getIsFinished());
         project.setCreateTime(entity.getCreateTime());
 
         return project;
@@ -59,7 +59,7 @@ public class ProjectMapperImpl implements ProjectMapper {
         projectEntity.setId(project.getId());
         projectEntity.setName(project.getName());
         projectEntity.setDescription(project.getDescription());
-        projectEntity.setFinished(project.isFinished());
+        projectEntity.setIsFinished(project.getIsFinished());
         projectEntity.setCreateTime(project.getCreateTime());
 
         return projectEntity;

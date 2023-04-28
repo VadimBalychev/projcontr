@@ -53,6 +53,6 @@ public class ProjectService {
         "name: " + project.getName() + '\n' +
         "description: " + project.getDescription() +
         "createTime: " + project.getCreateTime() +
-        "isFinished: " + project.isFinished() + '\n' + '\n');
+        "isFinished: " + project.getIsFinished() + '\n' + '\n');
     }
 }
