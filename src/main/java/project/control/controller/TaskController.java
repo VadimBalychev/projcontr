@@ -2,6 +2,7 @@ package project.control.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import project.control.model.Project;
 import project.control.model.Task;
 import project.control.service.TaskService;
 
@@ -15,6 +16,10 @@ public class TaskController {
     @GetMapping
     public List<Task> getTasksByFilter() {
         return service.getAllTasks();
+    }
+    @GetMapping("/{id}")
+    public Task getAllProjects(@PathVariable("id") Long taskId) {
+        return service.getTaskById(taskId);
     }
     @PostMapping
     public Task createTask(@RequestBody Task task) {

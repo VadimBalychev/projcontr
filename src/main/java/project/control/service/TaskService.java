@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import project.control.entity.TaskEntity;
 import project.control.mapper.TaskMapper;
+import project.control.model.Project;
 import project.control.model.Task;
 import project.control.repository.TaskRepository;
 
@@ -23,6 +24,17 @@ public class TaskService {
     private final TaskMapper mapper;
     public List<Task> getAllTasks() {
         return repository.findAll().stream().map(mapper::toTask).toList();
+    }
+
+    public Task getTaskById(Long taskId) {
+        Optional<Task> task = repository.findById(taskId).map(mapper::toTask);
+        if (task.isPresent()) {
+            return task.get();
+        }
+        else {
+            log.info("\n\nПри попытке получения задачи с id = " + taskId + ", задача не обнаружена\n\n");
+            throw new ResponseStatusException(HttpStatusCode.valueOf(404));
+        }
     }
 
     public Task createTask(Task task) {

@@ -26,6 +26,17 @@ public class ProjectService {
         return repository.findAll().stream().map(mapper::toProject).toList();
     }
 
+    public Project getProjectsById(Long projectId) {
+        Optional<Project> project = repository.findById(projectId).map(mapper::toProject);
+        if (project.isPresent()) {
+            return project.get();
+        }
+        else {
+            log.info("\n\nПри попытке получения проекта с id = " + projectId + ", проект не обнаружен\n\n");
+            throw new ResponseStatusException(HttpStatusCode.valueOf(404));
+        }
+    }
+
     public Project createProject(Project project) {
         project.setCreateDate(Date.from(Instant.now()));
         createLog(project);
