@@ -51,6 +51,8 @@ public class ProjectService {
         log.info("\n\nПопытка добавить проект с параметрами: " + '\n' +
         "id: " + project.getId() + '\n' +
         "name: " + project.getName() + '\n' +
-        "description: " + project.getDescription() + '\n' + '\n');
+        "description: " + project.getDescription() +
+        "createTime: " + project.getCreateTime() +
+        "isFinished: " + project.isFinished() + '\n' + '\n');
     }
 }
