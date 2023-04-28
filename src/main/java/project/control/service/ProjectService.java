@@ -5,11 +5,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import project.control.entity.ProjectEntity;
+import project.control.entity.TaskEntity;
 import project.control.mapper.ProjectMapper;
 import project.control.model.Project;
 import project.control.repository.ProjectRepository;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,13 +27,16 @@ public class ProjectService {
     }
 
     public Project createProject(Project project) {
+        project.setCreateDate(Date.from(Instant.now()));
         createLog(project);
         return mapper.toProject(repository.save(mapper.toProjectEntity(project)));
     }
 
     public Project updateProject(Long projectId, Project project) {
-        if (repository.findById(projectId).isPresent()) {
+        Optional<ProjectEntity> entity = repository.findById(projectId);
+        if (entity.isPresent()) {
             project.setId(projectId);
+            project.setCreateDate(entity.get().getCreateDate());
             return mapper.toProject(repository.save(mapper.toProjectEntity(project)));
         }
         else {
@@ -51,8 +59,8 @@ public class ProjectService {
         log.info("\n\nПопытка добавить проект с параметрами: " + '\n' +
         "id: " + project.getId() + '\n' +
         "name: " + project.getName() + '\n' +
-        "description: " + project.getDescription() +
-        "createTime: " + project.getCreateTime() +
+        "description: " + project.getDescription() + '\n' +
+        "createTime: " + project.getCreateDate() + '\n' +
         "isFinished: " + project.getIsFinished() + '\n' + '\n');
     }
 }

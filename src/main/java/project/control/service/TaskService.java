@@ -5,11 +5,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import project.control.entity.TaskEntity;
 import project.control.mapper.TaskMapper;
 import project.control.model.Task;
 import project.control.repository.TaskRepository;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,13 +26,16 @@ public class TaskService {
     }
 
     public Task createTask(Task task) {
+        task.setCreateDate(Date.from(Instant.now()));
         createLog(task);
         return mapper.toTask(repository.save(mapper.toTaskEntity(task)));
     }
 
     public Task updateTask(Long taskId, Task task) {
-        if (repository.findById(taskId).isPresent()) {
+        Optional<TaskEntity> entity = repository.findById(taskId);
+        if (entity.isPresent()) {
             task.setId(taskId);
+            task.setCreateDate(entity.get().getCreateDate());
             return mapper.toTask(repository.save(mapper.toTaskEntity(task)));
         }
         else {

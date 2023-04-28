@@ -21,8 +21,8 @@ public class ProjectEntity {
     private String name;
     @Column(name = "description")
     private String description;
-    @Column(name = "create_time")
-    private Date createTime;
+    @Column(name = "create_date")
+    private Date createDate;
     @Column(name = "is_finished")
     private Boolean isFinished;
 

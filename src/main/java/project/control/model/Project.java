@@ -10,7 +10,7 @@ public class Project {
     private Long id;
     private String name;
     private String description;
-    private Date createTime;
+    private Date createDate;
     private Boolean isFinished;
     private List<Task> tasks;
 }

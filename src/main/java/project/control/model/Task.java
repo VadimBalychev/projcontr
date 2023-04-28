@@ -9,8 +9,8 @@ import java.util.Date;
 @Data
 public class Task {
     private Long id;
-    private Date createTime;
-    private Date finishTime;
+    private Date createDate;
+    private Date finishDate;
     private String description;
     private Phase phase;
     private String name;

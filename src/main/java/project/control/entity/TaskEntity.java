@@ -16,10 +16,10 @@ public class TaskEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "create_time")
-    private Date createTime;
-    @Column(name = "finish_time")
-    private Date finishTime;
+    @Column(name = "create_date")
+    private Date createDate;
+    @Column(name = "finish_date")
+    private Date finishDate;
     @Column(name = "phase")
     private Phase phase;
     @Column(name = "name")
