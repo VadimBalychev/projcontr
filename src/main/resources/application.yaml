@@ -1,14 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://192.168.0.105:3306/proj_contr
+    url: jdbc:mysql://localhost/proj_contr
     username: all
     password: pass
     driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect

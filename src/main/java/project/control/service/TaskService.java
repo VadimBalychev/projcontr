@@ -1,13 +1,11 @@
 package project.control.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import project.control.entity.TaskEntity;
 import project.control.mapper.TaskMapper;
-import project.control.model.Project;
 import project.control.model.Task;
 import project.control.repository.TaskRepository;
 
@@ -18,7 +16,6 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class TaskService {
     private final TaskRepository repository;
     private final TaskMapper mapper;
@@ -32,14 +29,12 @@ public class TaskService {
             return task.get();
         }
         else {
-            log.info("\n\nПри попытке получения задачи с id = " + taskId + ", задача не обнаружена\n\n");
             throw new ResponseStatusException(HttpStatusCode.valueOf(404));
         }
     }
 
     public Task createTask(Task task) {
         task.setCreateDate(Date.from(Instant.now()));
-        createLog(task);
         return mapper.toTask(repository.save(mapper.toTaskEntity(task)));
     }
 
@@ -51,7 +46,6 @@ public class TaskService {
             return mapper.toTask(repository.save(mapper.toTaskEntity(task)));
         }
         else {
-            log.info("\n\nПри попытке обновления задачи, задачи с id = " + taskId + " не обнаружено\n\n");
             throw new ResponseStatusException(HttpStatusCode.valueOf(404));
         }
     }
@@ -61,19 +55,7 @@ public class TaskService {
             repository.deleteById(taskId);
         }
         else {
-            log.info("\n\nПри попытке удаления задачи, задачи с id = " + taskId + " не обнаружено\n\n");
             throw new ResponseStatusException(HttpStatusCode.valueOf(404));
         }
-    }
-
-    public void createLog(Task task) {
-        log.info("\n\nПопытка добавить задачу с параметрами: " + '\n' +
-        "id: " + task.getId() + '\n' +
-        "name: " + task.getName() + '\n' +
-        "description: " + task.getDescription() + '\n' +
-        "phase: " + task.getPhase() + '\n' +
-        "priority: " + task.getPriority() + '\n' +
-        "createTime: " + task.getCreateDate() + '\n' +
-        "finishTime: " + task.getFinishDate() + '\n' + '\n');
     }
 }

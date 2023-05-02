@@ -17,7 +17,7 @@ public class ProjectController {
         return service.getAllProjects();
     }
     @GetMapping("/{id}")
-    public Project getAllProjects(@PathVariable("id") Long projectId) {
+    public Project getProjectById(@PathVariable("id") Long projectId) {
         return service.getProjectsById(projectId);
     }
     @PostMapping

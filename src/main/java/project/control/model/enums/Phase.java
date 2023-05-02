@@ -8,18 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public enum Phase {
-    PLANNED("Запланировано"),
-    IN_PROCESS("В процессе"),
-    FINISHED("Закончено");
-
-    private String title;
-
-    public Phase getByTitle(String title) {
-        for (Phase phase: Phase.values()) {
-            if (phase.title.equalsIgnoreCase(title)) {
-                return phase;
-            }
-        }
-        return null;
-    }
+    PLANNED,
+    IN_PROCESS,
+    FINISHED
 }
